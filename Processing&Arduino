@@ -1,0 +1,37 @@
+# Laboratorio5_SensorUltrasonico
+//Mel-c Miranda C.
+Fecha:5/04/2023
+import processing.serial.*;
+Serial myPort;  // Objeto Serial
+int val;        // Variable para almacenar los datos del sensor ultrasónico
+
+void setup() {
+  size (400, 300); 
+  // Establecer la comunicación con el puerto serial
+  String portName = Serial.list()[0];
+  myPort = new Serial(this, portName, 9600);
+}
+void draw() {
+  if (myPort.available() > 0) {
+    // Leer los datos del puerto serial y mostrarlos en la consola
+    val = myPort.read();
+    println("La distancia es de: " + val + " cm");
+  }
+   delay(1000);
+  background(85,206,177);  //Fondo
+   fill(0);
+  textSize(20);  //Tamaño de fuente
+  //float x = width * 0.1;
+  //float y = height *  0.9;
+  float delta = width * 0.8;
+  //float w = delta * 0.8;
+ 
+ while(myPort.available()>0){
+    String buffer = myPort.readString();
+    if(buffer!=null){
+      //println(buffer);
+      fill(0);
+      text("Distancia: "+buffer +"cm",60,120);
+    }
+  }
+}
