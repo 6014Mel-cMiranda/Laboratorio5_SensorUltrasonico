@@ -21,11 +21,7 @@ void draw() {
   background(85,206,177);  //Fondo
    fill(0);
   textSize(20);  //Tamaño de fuente
-  //float x = width * 0.1;
-  //float y = height *  0.9;
-  float delta = width * 0.8;
-  //float w = delta * 0.8;
- 
+  //Para visualizar en el cuadro
  while(myPort.available()>0){
     String buffer = myPort.readString();
     if(buffer!=null){
